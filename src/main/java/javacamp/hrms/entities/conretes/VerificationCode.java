@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -25,7 +26,7 @@ public class VerificationCode {
 	@Column(name = "user_id")
 	private int userId;
 	
-	@NotNull
+	@NotNull 
 	@Column(name = "is_verified")
 	private boolean isVerified;
 	

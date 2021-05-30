@@ -8,6 +8,7 @@ import javacamp.hrms.entities.conretes.Candidate;
 
 
 public interface CandidateService {
+	
 	public DataResult<List<Candidate>> getAllCandidates();
 	
 	Result register(Candidate candidate);

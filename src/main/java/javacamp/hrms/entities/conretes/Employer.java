@@ -1,38 +1,57 @@
 package javacamp.hrms.entities.conretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
+
+
 
 @Entity
 @Table(name = "employers")
+//@PrimaryKeyJoinColumn(name = "user_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class Employer extends User {
 	
+	@NotNull
 	@Column(name = "company_name")
 	private String companyName;
 	
+	@NotNull
 	@Column(name = "web_adress")
 	private String webAdress;
 	
+	@NotNull
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
+	@NotNull
 	@Column(name = "is confirmed")
 	private boolean isConfirmed;
+	
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvert> jobAdverts; 
 	
 	public Employer() {
 		
 	}
 
-	public Employer(String companyName, String webAdress, String phoneNumber, boolean isConfirmed) {
+	public Employer(String companyName, String webAdress, String phoneNumber, boolean isConfirmed,
+			List<JobAdvert> jobAdverts) {
 		super();
 		this.companyName = companyName;
 		this.webAdress = webAdress;
 		this.phoneNumber = phoneNumber;
 		this.isConfirmed = isConfirmed;
+		this.jobAdverts = jobAdverts;
 	}
 
-	
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -63,6 +82,14 @@ public class Employer extends User {
 
 	public void setConfirmed(boolean isConfirmed) {
 		this.isConfirmed = isConfirmed;
+	}
+
+	public List<JobAdvert> getJobAdverts() {
+		return jobAdverts;
+	}
+
+	public void setJobAdverts(List<JobAdvert> jobAdverts) {
+		this.jobAdverts = jobAdverts;
 	}
 	
 }

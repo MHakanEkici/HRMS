@@ -10,50 +10,48 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "jobs")
+@Table(name = "cities")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
-public class Job {
+public class City {
 	
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private int jobId;
+	private int cityId; 
+		
+	@Column(name = "city_name")
+	private String cityName;
 	
-	@NotNull
-	@Column(name = "job_name")
-	private String jobName;
-	
-	@OneToMany(mappedBy = "job")
+	@OneToMany(mappedBy = "city")
 	private List<JobAdvert> jobAdverts;
 	
-	public Job() {
+	public City() {
 		
 	}
 
-	public Job(int jobId, String jobName, List<JobAdvert> jobAdverts) {
+	public City(int cityId, String cityName, List<JobAdvert> jobAdverts) {
 		super();
-		this.jobId = jobId;
-		this.jobName = jobName;
+		this.cityId = cityId;
+		this.cityName = cityName;
 		this.jobAdverts = jobAdverts;
 	}
 
-	public int getJobId() {
-		return jobId;
+	public int getCityId() {
+		return cityId;
 	}
 
-	public void setJobId(int jobId) {
-		this.jobId = jobId;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 
-	public String getJobName() {
-		return jobName;
+	public String getCityName() {
+		return cityName;
 	}
 
-	public void setJobName(String jobName) {
-		this.jobName = jobName;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
 	public List<JobAdvert> getJobAdverts() {

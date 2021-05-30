@@ -34,6 +34,7 @@ public class EmployerManager implements EmployerService {
 	public Result register(Employer employer) {
 		Result validationResult = employerValidatorService.canEmployerRegister(employer);
 		if(validationResult.isSuccess()) {
+			employer.setConfirmed(false);
 			Employer newEmployer = employerDao.save(employer);
 			emailService.sendEmail(newEmployer.getEmail(), newEmployer.getUserId());
 			return new SuccessResult("Kayıt Başarılı. Lütfen e-posta adresinize gönderilen kodu doğrulayın.");

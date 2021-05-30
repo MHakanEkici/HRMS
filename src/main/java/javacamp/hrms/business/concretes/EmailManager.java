@@ -22,7 +22,7 @@ public class EmailManager implements EmailService {
 	public void sendEmail(String email, int userId) {
 		String verificationCode = verificationCodeService.createCode(userId);
 		System.out.println("Kod oluşturuldu, e-posta gönderildi."); 
-		//TODO E-posta gönderme simule edildi. Ama kod üretildi ve veri tabanına kaydedildi.
+		// E-posta gönderme simule edildi. Ama kod üretildi ve veri tabanına kaydedildi.
 		
 	}
 

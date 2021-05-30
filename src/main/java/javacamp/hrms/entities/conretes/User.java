@@ -8,6 +8,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
@@ -18,15 +20,19 @@ public class User {
 	@Column(name = "user_id")
 	private int userId;
 	
+	@NotNull
 	@Column(name = "email")
 	private String email;
 	
+	@NotNull
 	@Column(name = "user_password")
 	private String password;
 	
+	@NotNull
 	@Column(name = "confirm_password")
 	private String confirmPassword;
 	
+	@NotNull
 	@Column(name = "user_type")
 	private String userType;
 	

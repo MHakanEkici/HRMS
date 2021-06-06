@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -25,6 +27,10 @@ public class VerificationCode {
 	@NotNull
 	@Column(name = "user_id")
 	private int userId;
+	
+//	@ManyToOne()   //TODO 
+//    @JoinColumn(name="user_id")
+//    private User user;
 	
 	@NotNull 
 	@Column(name = "is_verified")

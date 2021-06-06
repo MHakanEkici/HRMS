@@ -9,7 +9,7 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "admins")
-//@PrimaryKeyJoinColumn(name = "user_id")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Admin extends User{
 	
 	@NotNull

@@ -34,6 +34,7 @@ public class CandidateManager implements CandidateService {
 	public Result register(Candidate candidate) {
 		Result validationResult = candidateValidatorService.canCandidateRegister(candidate);
 		if(validationResult.isSuccess()) {
+			candidate.setUserType("Candidate");
 			Candidate newCandidate = candidateDao.save(candidate);
 			emailService.sendEmail(newCandidate.getEmail(), newCandidate.getUserId());
 			return new SuccessResult("Kayıt Başarılı. Lütfen e-posta adresinize gönderilen kodu doğrulayın.");
@@ -53,6 +54,11 @@ public class CandidateManager implements CandidateService {
 	@Override
 	public DataResult<List<Candidate>> getAllCandidates() {
 		return new SuccessDataResult(candidateDao.findAll());
+	}
+
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		return new SuccessDataResult(candidateDao.findById(id).get());
 	}
 
 }

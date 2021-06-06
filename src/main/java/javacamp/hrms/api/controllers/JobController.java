@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import javacamp.hrms.business.abstracts.JobService;
 import javacamp.hrms.core.utilities.DataResult;
-import javacamp.hrms.core.utilities.ErrorDataResult;
-import javacamp.hrms.core.utilities.ErrorResult;
 import javacamp.hrms.core.utilities.Result;
-import javacamp.hrms.core.utilities.SuccessDataResult;
-import javacamp.hrms.core.utilities.SuccessResult;
+
 import javacamp.hrms.entities.conretes.Job;
 
 @RestController 

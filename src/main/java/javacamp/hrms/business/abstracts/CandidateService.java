@@ -11,8 +11,11 @@ public interface CandidateService {
 	
 	public DataResult<List<Candidate>> getAllCandidates();
 	
-	Result register(Candidate candidate);
-	Result logIn(Candidate candidate);
+	public DataResult<Candidate> getById(int id);
+	
+	public Result register(Candidate candidate);
+	
+	public Result logIn(Candidate candidate);
 	
 	
 

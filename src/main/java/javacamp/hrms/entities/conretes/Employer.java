@@ -15,7 +15,7 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "employers")
-//@PrimaryKeyJoinColumn(name = "user_id")
+@PrimaryKeyJoinColumn(name = "user_id")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class Employer extends User {
 	

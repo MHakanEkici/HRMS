@@ -17,7 +17,7 @@ import javacamp.hrms.entities.conretes.City;
 import javacamp.hrms.entities.conretes.JobAdvert;
 
 @RestController
-@RequestMapping(path = "/api/jobAdvert", produces = { MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" }, consumes = {
+@RequestMapping(path = "/api/jobAdverts", produces = { MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" }, consumes = {
 		MediaType.ALL_VALUE, MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" })
 @ResponseBody
 public class JobAdvertController {

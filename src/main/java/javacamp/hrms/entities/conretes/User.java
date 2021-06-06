@@ -1,13 +1,17 @@
 package javacamp.hrms.entities.conretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -36,17 +40,27 @@ public class User {
 	@Column(name = "user_type")
 	private String userType;
 	
+//	@OneToMany(mappedBy = "user")  //TODO
+//    @JsonIgnore
+//    private List<VerificationCode> verificationCodes;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<Picture> pictures ;
+	
 	public User() {
 		
 	}
 
-	public User(int userId, String email, String password, String confirmPassword, String userType) {
+	public User(int userId, String email, String password, String confirmPassword, String userType,
+			List<Picture> pictures) {
 		super();
 		this.userId = userId;
 		this.email = email;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
 		this.userType = userType;
+		this.pictures = pictures;
 	}
 
 	public int getUserId() {
@@ -89,6 +103,12 @@ public class User {
 		this.userType = userType;
 	}
 
+	public List<Picture> getPictures() {
+		return pictures;
+	}
 
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
 
 }

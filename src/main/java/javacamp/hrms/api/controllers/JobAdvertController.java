@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import javacamp.hrms.entities.conretes.JobAdvert;
 @RequestMapping(path = "/api/jobAdverts", produces = { MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" }, consumes = {
 		MediaType.ALL_VALUE, MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" })
 @ResponseBody
+@CrossOrigin
 public class JobAdvertController {
 
 	private JobAdvertService jobAdvertService;
@@ -30,12 +32,12 @@ public class JobAdvertController {
 		this.jobAdvertService = jobAdvertService;
 	}
 
-	@GetMapping("/getAllJobs")
-	public DataResult<List<JobAdvert>> getAllJobs() {
+	@GetMapping("/getAllJobAdverts")
+	public DataResult<List<JobAdvert>> getAllJobAdverts() {
 		return jobAdvertService.getAllJobAdverts();
 	}
 	
-	@GetMapping("/getAllSortedJobs")
+	@GetMapping("/getAllSortedJobAdverts")
 	public DataResult<List<JobAdvert>> getAllSorted() {
 		return jobAdvertService.getAllSorted();
 	}
@@ -43,6 +45,8 @@ public class JobAdvertController {
 	@GetMapping("/getAllCities")
 	public DataResult<List<City>> getAllCities() {
 		return jobAdvertService.getAllCities();
+//		jobAdvertService.addCity();
+//		return new SuccessDataResult<List<City>>();
 	}
 
 	@PostMapping("/add")

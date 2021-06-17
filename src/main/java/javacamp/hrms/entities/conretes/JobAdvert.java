@@ -69,13 +69,22 @@ public class JobAdvert {
 	@NotNull
 	@Column(name = "is_active")
 	private boolean isActive;
+	
+	@NotNull
+	@Column(name = "work_style")
+	private String workStyle;
+	
+	@NotNull
+	@Column(name = "work_time")
+	private String workTime;
 
 	public JobAdvert() {
 		
 	}
 
 	public JobAdvert(int jobAdvertId, String description, Employer employer, City city, Job job, String salary,
-			String openPositionCount, LocalDate deadline, OffsetDateTime createTime, boolean isActive) {
+			String openPositionCount, LocalDate deadline, OffsetDateTime createTime, boolean isActive, String workStyle,
+			String workTime) {
 		super();
 		this.jobAdvertId = jobAdvertId;
 		this.description = description;
@@ -85,8 +94,10 @@ public class JobAdvert {
 		this.salary = salary;
 		this.openPositionCount = openPositionCount;
 		this.deadline = deadline;
-		this.isActive = isActive;
 		this.createTime = createTime;
+		this.isActive = isActive;
+		this.workStyle = workStyle;
+		this.workTime = workTime;
 	}
 
 	public int getJobAdvertId() {
@@ -152,7 +163,7 @@ public class JobAdvert {
 	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
 	}
-	
+
 	public OffsetDateTime getCreateTime() {
 		return createTime;
 	}
@@ -168,7 +179,21 @@ public class JobAdvert {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	
+
+	public String getWorkStyle() {
+		return workStyle;
+	}
+
+	public void setWorkStyle(String workStyle) {
+		this.workStyle = workStyle;
+	}
+
+	public String getWorkTime() {
+		return workTime;
+	}
+
+	public void setWorkTime(String workTime) {
+		this.workTime = workTime;
+	}
 	
 }

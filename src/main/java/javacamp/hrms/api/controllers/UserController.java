@@ -3,6 +3,7 @@ package javacamp.hrms.api.controllers;
 import org.springframework.http.MediaType;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import javacamp.hrms.entities.conretes.Employer;
 @RequestMapping(path = "/api/users", produces = { MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" }, consumes = {
 		MediaType.ALL_VALUE, MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" })
 @ResponseBody
+@CrossOrigin
 public class UserController {
 
 	private CandidateService candidateService;

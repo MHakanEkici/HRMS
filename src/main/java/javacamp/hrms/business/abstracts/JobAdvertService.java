@@ -17,5 +17,7 @@ public interface JobAdvertService {
 	public DataResult<List<City>> getAllCities();
 	
 	public DataResult<List<JobAdvert>> getAllSorted();
+	
+//	public void addCity();
 
 }

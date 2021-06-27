@@ -32,7 +32,11 @@ public class Employer extends User {
 	private String phoneNumber;
 	
 	@NotNull
-	@Column(name = "is confirmed")
+	@Column(name = "company_information")
+	private String companyInformation;
+	
+	@NotNull
+	@Column(name = "is_confirmed")
 	private boolean isConfirmed;
 	
 	@OneToMany(mappedBy = "employer")
@@ -42,12 +46,13 @@ public class Employer extends User {
 		
 	}
 
-	public Employer(String companyName, String webAdress, String phoneNumber, boolean isConfirmed,
-			List<JobAdvert> jobAdverts) {
+	public Employer(String companyName, String webAdress, String phoneNumber, String companyInformation,
+			boolean isConfirmed, List<JobAdvert> jobAdverts) {
 		super();
 		this.companyName = companyName;
 		this.webAdress = webAdress;
 		this.phoneNumber = phoneNumber;
+		this.companyInformation = companyInformation;
 		this.isConfirmed = isConfirmed;
 		this.jobAdverts = jobAdverts;
 	}
@@ -76,6 +81,14 @@ public class Employer extends User {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getCompanyInformation() {
+		return companyInformation;
+	}
+
+	public void setCompanyInformation(String companyInformation) {
+		this.companyInformation = companyInformation;
+	}
+
 	public boolean isConfirmed() {
 		return isConfirmed;
 	}
@@ -91,5 +104,6 @@ public class Employer extends User {
 	public void setJobAdverts(List<JobAdvert> jobAdverts) {
 		this.jobAdverts = jobAdverts;
 	}
+
 	
 }

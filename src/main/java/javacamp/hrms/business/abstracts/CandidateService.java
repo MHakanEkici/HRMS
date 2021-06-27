@@ -15,7 +15,7 @@ public interface CandidateService {
 	
 	public Result register(Candidate candidate);
 	
-	public Result logIn(Candidate candidate);
+	public DataResult<Candidate> logIn(Candidate candidate);
 	
 	
 

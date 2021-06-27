@@ -8,14 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javacamp.hrms.business.abstracts.AdminService;
 import javacamp.hrms.business.abstracts.CandidateService;
 import javacamp.hrms.business.abstracts.EmployerService;
 import javacamp.hrms.core.utilities.DataResult;
 import javacamp.hrms.core.utilities.Result;
+import javacamp.hrms.entities.conretes.Admin;
 import javacamp.hrms.entities.conretes.Candidate;
 import javacamp.hrms.entities.conretes.Employer;
+import javacamp.hrms.entities.dtos.JobAdvertDto;
 
 @RestController
 @RequestMapping(path = "/api/users", produces = { MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8" }, consumes = {
@@ -26,12 +31,14 @@ public class UserController {
 
 	private CandidateService candidateService;
 	private EmployerService employerService;
+	private AdminService adminService;
 
 	@Autowired
-	public UserController(CandidateService candidateService, EmployerService employerService) {
+	public UserController(CandidateService candidateService, EmployerService employerService, AdminService adminService) {
 		super();
 		this.candidateService = candidateService;
 		this.employerService = employerService;
+		this.adminService = adminService;
 	}
 
 	@PostMapping("/register/candidate")
@@ -44,7 +51,20 @@ public class UserController {
 		return employerService.register(employer);
 	}
 
-	// TODO LogIn'ler yazılcak.
+	@PostMapping("/logIn/candidate")
+	public Result logIn(@RequestBody Candidate candidate) {
+		return candidateService.logIn(candidate);
+	}
+
+	@PostMapping("/logIn/employer")
+	public Result logIn(@RequestBody Employer employer) {
+		return employerService.logIn(employer);
+	}
+	
+	@PostMapping("/logIn/admin")
+	public Result logIn(@RequestBody Admin admin) {
+		return adminService.logIn(admin);
+	}
 
 	@GetMapping("/getAllCandidates")
 	public DataResult<List<Candidate>> getAllCandidates() {
@@ -56,6 +76,17 @@ public class UserController {
 	public DataResult<List<Employer>> getAllEmployers() {
 		return employerService.getAllEmployers();
 
+	}
+	
+	@GetMapping("/getAllUnconfirmedEmployers")
+	public DataResult<List<Employer>> getAllUnconfirmedEmployers() {
+		return employerService.getAllUnconfirmedEmployers();
+
+	}
+	
+	@GetMapping("/confirmEmployer")
+	public Result confirmEmployer (@RequestParam int userId ) {
+		return employerService.confirmEmployer(userId);
 	}
 
 }

@@ -1,90 +1,33 @@
-package javacamp.hrms.entities.conretes;
+package javacamp.hrms.entities.dtos;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javacamp.hrms.entities.conretes.City;
+import javacamp.hrms.entities.conretes.Employer;
+import javacamp.hrms.entities.conretes.Job;
 
-import com.sun.istack.NotNull;
 
-@Entity
-@Table(name = "job_adverts")
-public class JobAdvert {
+public class JobAdvertDto {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
 	private int jobAdvertId; 
-	
-	@NotNull
-	@Column(name = "description")
-	private String description;
-	
-//	@NotNull
-//	@Column(name = "employer_id")
-//	private int employerId;
-	
-	@ManyToOne()
-	@JoinColumn(name = "employer_id")
+	private String description;	
 	private Employer employer; 
-	
-//	@NotNull
-//	@Column(name = "city_id")
-//	private int cityId;
-	
-	@ManyToOne
-	@JoinColumn(name = "city_id") 
 	private City city;
-	
-//	@NotNull
-//	@Column(name = "job_id")
-//	private int jobId;
-	
-	@ManyToOne
-	@JoinColumn(name = "job_id") 
 	private Job job;
-	
-	@NotNull
-	@Column(name = "salary")
 	private String salary;
-	
-	@NotNull
-	@Column(name = "open_position_count")
 	private String openPositionCount;
-	
-	@NotNull
-	@Column(name = "deadline")
 	private LocalDate deadline;
-	
-	@NotNull
-	@Column(name = "create_time")
-	private OffsetDateTime createTime;
-	
-	@NotNull
-	@Column(name = "work_style")
-	private String workStyle;
-	
-	@NotNull
-	@Column(name = "work_time")
-	private String workTime;
-	
-	@NotNull
-	@Column(name = "is_active")
+	private LocalDate createTime;
 	private boolean isActive;
-	
+	private String workStyle;
+	private String workTime;
 
-	public JobAdvert() {
+	public JobAdvertDto() {
 		
 	}
 
-	public JobAdvert(int jobAdvertId, String description, Employer employer, City city, Job job, String salary,
-			String openPositionCount, LocalDate deadline, OffsetDateTime createTime, boolean isActive, String workStyle,
+	public JobAdvertDto(int jobAdvertId, String description, Employer employer, City city, Job job, String salary,
+			String openPositionCount, LocalDate deadline, LocalDate createTime, boolean isActive, String workStyle,
 			String workTime) {
 		super();
 		this.jobAdvertId = jobAdvertId;
@@ -165,11 +108,11 @@ public class JobAdvert {
 		this.deadline = deadline;
 	}
 
-	public OffsetDateTime getCreateTime() {
+	public LocalDate getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(OffsetDateTime createTime) {
+	public void setCreateTime(LocalDate createTime) {
 		this.createTime = createTime;
 	}
 

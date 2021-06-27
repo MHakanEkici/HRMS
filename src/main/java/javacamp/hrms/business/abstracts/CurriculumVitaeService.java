@@ -11,6 +11,6 @@ public interface CurriculumVitaeService {
 	
 	public Result update(CurriculumVitaeDto curriculumVitaeDto);
 	
-	DataResult<CurriculumVitaeDto> getByUserId(int userId);
+	public DataResult<CurriculumVitaeDto> getByUserId(int userId);
 
 }

@@ -84,8 +84,7 @@ public class CandidateValidatorManager implements CandidateValidatorService {
 						return new ErrorResult("Mernis doğrulaması başarısız oldu.");
 					}
 				} else {
-					return new ErrorResult(
-							"Bu TC kimlik No veya e-posta adresi ile kayıtlı bir kullanıcı bulunmaktadır.");
+					return new ErrorResult("Bu TC kimlik No veya e-posta adresi ile kayıtlı bir kullanıcı bulunmaktadır.");
 				}
 			} else {
 				return new ErrorResult("Lütfen geçerli bir e-posta adres giriniz.");

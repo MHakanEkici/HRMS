@@ -19,7 +19,6 @@ import javacamp.hrms.core.utilities.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.CityDao;
 import javacamp.hrms.dataAccess.abstracts.JobAdvertDao;
 import javacamp.hrms.entities.conretes.City;
-import javacamp.hrms.entities.conretes.Employer;
 import javacamp.hrms.entities.conretes.JobAdvert;
 import javacamp.hrms.entities.dtos.JobAdvertDto;
 
@@ -46,6 +45,7 @@ public class JobAdvertManager implements JobAdvertService{
 
 	@Override
 	public Result update(JobAdvert jobAdvert) {
+		//TODO yazılacak
 		JobAdvert newJobAdvert = jobAdvertDao.findById(jobAdvert.getJobAdvertId()).get();
 		newJobAdvert = jobAdvert;
 		newJobAdvert.setActive(false);
@@ -109,7 +109,7 @@ public class JobAdvertManager implements JobAdvertService{
 	 
 	@Override
 	public DataResult<List<JobAdvert>> getAllPassiveJobAdverts() {
-		return new SuccessDataResult<List<JobAdvert>>(jobAdvertDao.findByIsActive(false));
+		return new SuccessDataResult<>(jobAdvertDao.findByIsActive(false));
 	}
 
 	@Override
@@ -123,8 +123,6 @@ public class JobAdvertManager implements JobAdvertService{
 			return new ErrorResult("İşlem Başarısız");
 		}
 	}
-
-	
 	
 //	@Override
 //	public void addCity() {

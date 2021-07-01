@@ -17,7 +17,6 @@ import javacamp.hrms.core.utilities.SuccessDataResult;
 import javacamp.hrms.core.utilities.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.PictureDao;
 import javacamp.hrms.entities.conretes.Picture;
-import javacamp.hrms.entities.conretes.User;
 
 @Service
 public class PictureManager implements PictureService{
@@ -34,7 +33,7 @@ public class PictureManager implements PictureService{
 
 	@Override
 	public DataResult<List<Picture>> getAll() {
-		return new SuccessDataResult<List<Picture>>(this.pictureDao.findByOrderById(),"Başarıyla listelendi");
+		return new SuccessDataResult<>(this.pictureDao.findByOrderById(),"Başarıyla listelendi");
 	}
 
 	@Override
@@ -57,7 +56,7 @@ public class PictureManager implements PictureService{
 
 	@Override
 	public DataResult<Optional<Picture>> getById(int id) {
-		return new SuccessDataResult<Optional<Picture>>(this.pictureDao.findById(id),"Başarıyla getirildi."); 
+		return new SuccessDataResult<>(this.pictureDao.findById(id),"Başarıyla getirildi.");
 	}
 
 	@Override

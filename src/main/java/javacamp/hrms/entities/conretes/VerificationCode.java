@@ -28,7 +28,7 @@ public class VerificationCode {
 	@Column(name = "user_id")
 	private int userId;
 	
-//	@ManyToOne()   //TODO 
+//	@ManyToOne()
 //    @JoinColumn(name="user_id")
 //    private User user;
 	

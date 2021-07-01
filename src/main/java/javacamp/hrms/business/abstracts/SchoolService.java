@@ -9,12 +9,12 @@ import javacamp.hrms.entities.conretes.School;
 public interface SchoolService {
 	
 	Result add(School school);
-	
+
 	Result addAll(List <School> schools);
-	
-	Result delete(int id);
-	
+
 	Result update(School school);
+
+	Result delete(int id);
 	
 	DataResult<List<School>> getAll();
 	

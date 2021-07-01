@@ -40,7 +40,7 @@ public class User {
 	@Column(name = "user_type")
 	private String userType;
 	
-//	@OneToMany(mappedBy = "user")  //TODO
+//	@OneToMany(mappedBy = "user")
 //    @JsonIgnore
 //    private List<VerificationCode> verificationCodes;
 	

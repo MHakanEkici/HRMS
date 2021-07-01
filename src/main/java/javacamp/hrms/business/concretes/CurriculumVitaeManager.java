@@ -1,11 +1,8 @@
 package javacamp.hrms.business.concretes;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javacamp.hrms.business.abstracts.CandidateService;
 import javacamp.hrms.business.abstracts.CurriculumVitaeService;
 import javacamp.hrms.business.abstracts.ForeignLanguageService;
@@ -35,8 +32,9 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 	private ForeignLanguageService foreignLanguageService;
 	
 	@Autowired
-	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao, CandidateService candidateService, 
-			JobExperienceService jobExperienceService, SchoolService schoolService, ForeignLanguageService foreignLanguageService) {
+	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao, CandidateService candidateService,
+								  JobExperienceService jobExperienceService, SchoolService schoolService,
+								  ForeignLanguageService foreignLanguageService) {
 		super();
 		this.curriculumVitaeDao = curriculumVitaeDao;	
 		this.candidateService = candidateService;
@@ -68,7 +66,7 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		List<ForeignLanguage> foreignLanguages = foreignLanguageService.getAllByCurriculumVitaeId(cv.getCurriculumVitaeId()).getData();
 		cvDto.setForeignLanguages(foreignLanguages);
 		
-		return new SuccessDataResult<CurriculumVitaeDto>(cvDto);
+		return new SuccessDataResult<>(cvDto);
 	}
 
 	@Override
@@ -107,6 +105,7 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 
 	@Override
 	public Result update(CurriculumVitaeDto curriculumVitaeDto) {
+		//TODO yazılacak
 //		CurriculumVitae newCurriculumVitae = curriculumVitaeDao.findById(curriculumVitaeDto.getCurriculumVitaeId()).get();
 //		newCurriculumVitae = curriculumVitaeDto;
 //		curriculumVitaeDao.save(newCurriculumVitae);

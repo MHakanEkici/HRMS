@@ -2,6 +2,7 @@ package javacamp.hrms.api.controllers;
 
 import java.util.List;
 
+import javacamp.hrms.core.utilities.SuccessResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,8 +49,6 @@ public class JobAdvertController {
 	@GetMapping("/getAllCities")
 	public DataResult<List<City>> getAllCities() {
 		return jobAdvertService.getAllCities();
-//		jobAdvertService.addCity();
-//		return new SuccessDataResult<List<City>>();
 	}
 
 	@PostMapping("/add")
@@ -65,11 +64,17 @@ public class JobAdvertController {
 	@GetMapping("/getAllPassiveJobAdverts")
 	public DataResult<List<JobAdvert>> getAllPassiveJobAdverts() {
 		return jobAdvertService.getAllPassiveJobAdverts();
-
 	}
 	
 	@GetMapping("/setActiveJobAdvert")
 	public Result setActiveJobAdvert (@RequestParam int jobAdvertId ) {
 		return jobAdvertService.setActiveJobAdvert(jobAdvertId);
 	}
+
+	//	@GetMapping("/addCities")
+	//	public Result getAllCities() {
+	//		jobAdvertService.addCity();
+	//		return new SuccessResult("İşlem başarılı");
+	//	}
+
 }

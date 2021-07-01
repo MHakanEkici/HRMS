@@ -29,7 +29,7 @@ public class JobExperienceManager implements JobExperienceService{
 	@Override
 	public DataResult<List<JobExperience>> getAllByCurriculumVitaeIdSorted(int curriculumVitaeId) {
 		Sort sort = Sort.by(Sort.Direction.DESC,"startDateOfWork");
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByCurriculumVitae_CurriculumVitaeId(curriculumVitaeId, sort));
+		return new SuccessDataResult<>(this.jobExperienceDao.getAllByCurriculumVitae_CurriculumVitaeId(curriculumVitaeId, sort));
 	}
 
 	@Override
@@ -61,6 +61,7 @@ public class JobExperienceManager implements JobExperienceService{
 
 	@Override
 	public Result update(JobExperience jobExperience) {
+		//TODO yazılacak
 		JobExperience newJobExperience = jobExperienceDao.findById(jobExperience.getJobExperienceId()).get();
 		newJobExperience = jobExperience;
 		jobExperienceDao.save(newJobExperience);
@@ -69,7 +70,7 @@ public class JobExperienceManager implements JobExperienceService{
 
 	@Override
 	public DataResult<List<JobExperience>> getAll() {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll());
+		return new SuccessDataResult<>(this.jobExperienceDao.findAll());
 	}
 
 }

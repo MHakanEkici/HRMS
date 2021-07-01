@@ -2,10 +2,8 @@ package javacamp.hrms.business.concretes.validators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javacamp.hrms.business.abstracts.validator_services.EmployerValidatorService;
 import javacamp.hrms.core.utilities.ErrorResult;
 import javacamp.hrms.core.utilities.Result;
@@ -25,6 +23,31 @@ public class EmployerValidatorManager implements EmployerValidatorService {
 	}
 
 	@Override
+	public Result validateEmployer(Employer employer){
+		if (isValidUserInfo(employer)) {
+			if (isValidEmailAdress(employer.getEmail())) {
+				if (isValidDomainAdress(employer.getWebAdress(), employer.getEmail())) {
+					if (!isUserExist(employer.getEmail())) {
+						if (isPasswordConfirmed(employer.getPassword(), employer.getConfirmPassword())) {
+							return new SuccessResult();
+						} else{
+							return new ErrorResult("Belirlediğiniz şifre ile tekrar girdiğiniz şifre aynı değil");
+						}
+					} else {
+						return new ErrorResult("Bu e-posta adresiyle kayıtlı bir kullanıcı bulunmaktadır");
+					}
+				} else {
+					return new ErrorResult("Lütfen web sitesi ile aynı domaine sahip bir e-posta giriniz");
+				}
+			} else {
+				return new ErrorResult("Lütfen geçerli bir e-posta adres giriniz");
+			}
+		} else {
+			return new ErrorResult("Lütfen bütün bilgileri doğru şekilde giriniz");
+		}
+	}
+
+	@Override
 	public boolean isValidUserInfo(Employer employer) {
 		if (employer.getCompanyName() == null || employer.getCompanyName().trim().isEmpty()) {
 			return false;
@@ -40,12 +63,7 @@ public class EmployerValidatorManager implements EmployerValidatorService {
 			return false;
 		}
 
-		if (!employer.getPassword().equals(employer.getConfirmPassword())) {
-			return false;
-		}
-
 		return true;
-
 	}
 
 	@Override
@@ -66,48 +84,29 @@ public class EmployerValidatorManager implements EmployerValidatorService {
 		} else {
 			return true;
 		}
-		// return result == -1 ? false : true; if - else kısa yoldan yazım şekli.
-
+		// return result == -1 ? false : true; --> if/else kontrolünün kısa yoldan yazım şekli.
 	}
 
 	@Override
-	public boolean isUserExist(String eMail) {
-		if (employerDao.findByEmail(eMail).isPresent()) {
-			return false;
+	public boolean isUserExist(String email) {
+		if (employerDao.findByEmail(email).isPresent()) {
+			return true;
 		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isPasswordConfirmed(String password, String confirmPassword) {
+		if (password.equals(confirmPassword)) {
 			return true;
 		}
-
+		return false;
 	}
 
 	@Override
 	public boolean isConfirmed(Employer employer) {
-		// return employerDao.findByUserId(employer.getUserId()).get().isConfirmed();
-		// TODO confirmed simule edildi.
-		return true;
-	}
-
-	@Override
-	public Result canEmployerRegister(Employer employer){
-	
-		if (isValidUserInfo(employer)) {
-			if (isValidEmailAdress(employer.getEmail())) {
-				if (isValidDomainAdress(employer.getWebAdress(), employer.getEmail())) {
-					if (isUserExist(employer.getEmail())) {
-						return new SuccessResult();
-					} else {
-						return new ErrorResult("Bu e-posta adresiyle kayıtlı bir kullanıcı bulunmaktadır.");
-					}
-				} else {
-					return new ErrorResult("Lütfen web sitesi ile aynı domaine sahip bir e-posta giriniz.");
-				}
-			} else {
-				return new ErrorResult("Lütfen geçerli bir e-posta adres giriniz.");
-			}
-		} else {
-			return new ErrorResult("Lütfen bütün bilgileri doğru şekilde giriniz.");
-		}
-
+		return employerDao.findByUserId(employer.getUserId()).get().isConfirmed();
 	}
 
 }

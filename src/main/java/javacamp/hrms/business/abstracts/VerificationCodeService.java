@@ -1,9 +1,13 @@
 package javacamp.hrms.business.abstracts;
 
+import javacamp.hrms.core.utilities.Result;
+
 public interface VerificationCodeService {
-	
-	public boolean isCodeVerified(int userId);
-	
-	public String createCode(int userId);
+
+	String createCode(int userId);
+
+	boolean isCodeVerified(int userId);
+
+	Result confirmCode(String code);
 
 }

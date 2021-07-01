@@ -5,6 +5,6 @@ import javacamp.hrms.entities.conretes.Admin;
 
 public interface AdminService {
 	
-	public DataResult<Admin> logIn(Admin admin);
+	DataResult<Admin> logIn(Admin admin);
 
 }

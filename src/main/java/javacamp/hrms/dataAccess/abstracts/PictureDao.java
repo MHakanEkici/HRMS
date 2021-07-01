@@ -8,6 +8,6 @@ import javacamp.hrms.entities.conretes.Picture;
 
 public interface PictureDao extends JpaRepository<Picture, Integer>{
 	
-	List<Picture> findByOrderById(); //TODO 
+	List<Picture> findByOrderById();
 
 }

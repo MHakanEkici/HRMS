@@ -4,11 +4,15 @@ import javacamp.hrms.core.utilities.Result;
 import javacamp.hrms.entities.conretes.Candidate;
 
 public interface CandidateValidatorService {
-	
-	boolean isValidUserInfo(Candidate candidate);
-	boolean isValidEmailAdress(String eMail);
+
+	Result validateCandidate(Candidate candidate);
+
 	boolean isUserExist(Long identityNumber, String eMail);
-	Result canCandidateRegister(Candidate candidate);
-	
+
+	boolean isValidUserInfo(Candidate candidate);
+
+	boolean isValidEmailAdress(String email);
+
+	boolean isPasswordConfirmed(String password, String confirmPassword);
 
 }

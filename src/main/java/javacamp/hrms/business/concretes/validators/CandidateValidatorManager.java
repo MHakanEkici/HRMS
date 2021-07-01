@@ -29,6 +29,40 @@ public class CandidateValidatorManager implements CandidateValidatorService {
 	}
 
 	@Override
+	public Result validateCandidate(Candidate candidate) {
+		if (isValidUserInfo(candidate)) {
+			if (isValidEmailAdress(candidate.getEmail())) {
+				if (!isUserExist(candidate.getIdentityNumber(), candidate.getEmail())) {
+					if (isPasswordConfirmed(candidate.getPassword(), candidate.getConfirmPassword())) {
+						if (mernisCheckService.checkIfRealPerson(candidate)) {
+							return new SuccessResult();
+						} else {
+							return new ErrorResult("Mernis kimlik doğrulaması başarısız oldu");
+						}
+					} else{
+						return new ErrorResult("Belirlediğiniz şifre ile tekrar girdiğiniz şifre aynı değil");
+					}
+				} else {
+					return new ErrorResult("Bu TC kimlik No veya e-posta adresi ile kayıtlı bir kullanıcı bulunmaktadır");
+				}
+			} else {
+				return new ErrorResult("Lütfen geçerli bir e-posta adres giriniz");
+			}
+		} else {
+			return new ErrorResult("Lütfen bütün bilgileri doğru şekilde giriniz");
+		}
+	}
+
+	@Override
+	public boolean isUserExist(Long identityNumber, String eMail) {
+		if (candidateDao.findByIdentityNumberOrEmail(identityNumber, eMail).isPresent()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
 	public boolean isValidUserInfo(Candidate candidate) {
 
 		if (candidate.getFirstName() == null || candidate.getFirstName().trim().length() < 2) {
@@ -47,10 +81,6 @@ public class CandidateValidatorManager implements CandidateValidatorService {
 			return false;
 		}
 
-		if (!candidate.getPassword().equals(candidate.getConfirmPassword())) {
-			return false;
-		}
-
 		return true;
 
 	}
@@ -64,35 +94,11 @@ public class CandidateValidatorManager implements CandidateValidatorService {
 	}
 
 	@Override
-	public boolean isUserExist(Long identityNumber, String eMail) {
-		if (candidateDao.findByIdentityNumberOrEmail(identityNumber, eMail).isPresent()) {
-			return false;
-		} else {
+	public boolean isPasswordConfirmed(String password, String confirmPassword) {
+		if (password.equals(confirmPassword)) {
 			return true;
 		}
-	}
-
-	@Override
-	public Result canCandidateRegister(Candidate candidate) {
-
-		if (isValidUserInfo(candidate)) {
-			if (isValidEmailAdress(candidate.getEmail())) {
-				if (isUserExist(candidate.getIdentityNumber(), candidate.getEmail())) {
-					if (mernisCheckService.checkIfRealPerson(candidate)) {
-						return new SuccessResult();
-					} else {
-						return new ErrorResult("Mernis doğrulaması başarısız oldu.");
-					}
-				} else {
-					return new ErrorResult("Bu TC kimlik No veya e-posta adresi ile kayıtlı bir kullanıcı bulunmaktadır.");
-				}
-			} else {
-				return new ErrorResult("Lütfen geçerli bir e-posta adres giriniz.");
-			}
-		} else {
-			return new ErrorResult("Lütfen bütün bilgileri doğru şekilde giriniz.");
-		}
-
+		return false;
 	}
 
 }

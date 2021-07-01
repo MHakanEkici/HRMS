@@ -7,10 +7,9 @@ import javacamp.hrms.core.utilities.Result;
 import javacamp.hrms.entities.conretes.Job;
 
 public interface JobService {
-	public DataResult<List<Job>> getAllJobs();
-	
-	public Result add(Job job);
-	
-	
+
+	Result add(Job job);
+
+	DataResult<List<Job>> getAllJobs();
 
 }

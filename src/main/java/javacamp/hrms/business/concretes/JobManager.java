@@ -37,7 +37,6 @@ public class JobManager implements JobService {
 		}
 		jobDao.save(job);
 		return new SuccessResult();
-
 	}
 
 }

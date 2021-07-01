@@ -15,13 +15,15 @@ import javacamp.hrms.entities.conretes.Employer;
 public interface EmployerDao extends JpaRepository<Employer,Integer> {
 	
 	Optional<Employer> findByEmail(String email);
+
+	Optional<Employer> findByEmailAndPassword(String email, String password);
 	
 	Optional<Employer> findByUserId(int userId);
 	
 	List<Employer> findByIsConfirmed(boolean isConfirmed);
 	
 	@Modifying
-    @Query(value= "update employers  set is_confirmed = :confirmed where user_id = :userId", nativeQuery = true)
-    int setEmployerConfirmed(@Param("confirmed") boolean confirmed, @Param("userId") int userId);
+    @Query(value= "update employers set is_confirmed = true where user_id = :userId", nativeQuery = true)
+    int setEmployerConfirmed(@Param("userId") int userId);
 
 }

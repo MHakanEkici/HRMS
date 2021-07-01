@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javacamp.hrms.entities.conretes.Employer;
 import javacamp.hrms.entities.conretes.JobAdvert;
 
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {

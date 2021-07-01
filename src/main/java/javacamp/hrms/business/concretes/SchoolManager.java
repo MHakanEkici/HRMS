@@ -56,6 +56,7 @@ public class SchoolManager implements SchoolService{
 
 	@Override
 	public Result update(School school) {
+		//TODO yazılacak
 		School newSchool = schoolDao.findById(school.getId()).get();
 		newSchool = school;
 		schoolDao.save(newSchool);

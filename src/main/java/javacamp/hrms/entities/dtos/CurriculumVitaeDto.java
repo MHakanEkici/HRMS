@@ -3,8 +3,10 @@ package javacamp.hrms.entities.dtos;
 import java.time.LocalDate;
 import java.util.List;
 
+import javacamp.hrms.entities.conretes.Candidate;
 import javacamp.hrms.entities.conretes.ForeignLanguage;
 import javacamp.hrms.entities.conretes.JobExperience;
+import javacamp.hrms.entities.conretes.Picture;
 import javacamp.hrms.entities.conretes.School;
 
 
@@ -24,27 +26,31 @@ public class CurriculumVitaeDto {
 //	private String languageName;
 //	private int level;
 	private List<ForeignLanguage> foreignLanguages;
+	private List<Picture> pictures;
 	private String githubAddress;
     private String linkedinAddress;
     private String knownTechnologies;
     private String coverLetter;
+    private Candidate candidate;
 	
     public CurriculumVitaeDto() {
 	
 	}
 
 	public CurriculumVitaeDto(int userId, List<School> schools, List<JobExperience> jobExperiences,
-			List<ForeignLanguage> foreignLanguages, String githubAddress, String linkedinAddress,
-			String knownTechnologies, String coverLetter) {
+			List<ForeignLanguage> foreignLanguages, List<Picture> pictures, String githubAddress,
+			String linkedinAddress, String knownTechnologies, String coverLetter, Candidate candidate) {
 		super();
 		this.userId = userId;
 		this.schools = schools;
 		this.jobExperiences = jobExperiences;
 		this.foreignLanguages = foreignLanguages;
+		this.pictures = pictures;
 		this.githubAddress = githubAddress;
 		this.linkedinAddress = linkedinAddress;
 		this.knownTechnologies = knownTechnologies;
 		this.coverLetter = coverLetter;
+		this.candidate = candidate;
 	}
 
 	public int getUserId() {
@@ -79,6 +85,14 @@ public class CurriculumVitaeDto {
 		this.foreignLanguages = foreignLanguages;
 	}
 
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
 	public String getGithubAddress() {
 		return githubAddress;
 	}
@@ -110,5 +124,15 @@ public class CurriculumVitaeDto {
 	public void setCoverLetter(String coverLetter) {
 		this.coverLetter = coverLetter;
 	}
+
+	public Candidate getCandidate() {
+		return candidate;
+	}
+
+	public void setCandidate(Candidate candidate) {
+		this.candidate = candidate;
+	}
+
+	
 
 }

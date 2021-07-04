@@ -17,6 +17,8 @@ public interface PictureService {
 	DataResult<Optional<Picture>> getById(int id);
 
 	DataResult<List<Picture>> getAll();
+	
+	DataResult<List<Picture>> getAllByUserId(int userId);
 
 	Boolean isExists(int id);
 

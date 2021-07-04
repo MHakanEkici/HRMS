@@ -64,4 +64,10 @@ public class PictureManager implements PictureService{
 		return this.pictureDao.existsById(id);
 	}
 
+	@Override
+	public DataResult<List<Picture>> getAllByUserId(int userId) {
+		return new SuccessDataResult<>(this.pictureDao.getAllByUser_UserId(userId));
+	}
+
+
 }

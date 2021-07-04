@@ -7,6 +7,7 @@ import javacamp.hrms.business.abstracts.CandidateService;
 import javacamp.hrms.business.abstracts.CurriculumVitaeService;
 import javacamp.hrms.business.abstracts.ForeignLanguageService;
 import javacamp.hrms.business.abstracts.JobExperienceService;
+import javacamp.hrms.business.abstracts.PictureService;
 import javacamp.hrms.business.abstracts.SchoolService;
 import javacamp.hrms.core.utilities.DataResult;
 import javacamp.hrms.core.utilities.ErrorDataResult;
@@ -19,6 +20,7 @@ import javacamp.hrms.entities.conretes.Candidate;
 import javacamp.hrms.entities.conretes.CurriculumVitae;
 import javacamp.hrms.entities.conretes.ForeignLanguage;
 import javacamp.hrms.entities.conretes.JobExperience;
+import javacamp.hrms.entities.conretes.Picture;
 import javacamp.hrms.entities.conretes.School;
 import javacamp.hrms.entities.dtos.CurriculumVitaeDto;
 
@@ -30,17 +32,19 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 	private JobExperienceService jobExperienceService;
 	private SchoolService schoolService;
 	private ForeignLanguageService foreignLanguageService;
+	private PictureService pictureService;
 	
 	@Autowired
 	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao, CandidateService candidateService,
 								  JobExperienceService jobExperienceService, SchoolService schoolService,
-								  ForeignLanguageService foreignLanguageService) {
+								  ForeignLanguageService foreignLanguageService, PictureService pictureService) {
 		super();
 		this.curriculumVitaeDao = curriculumVitaeDao;	
 		this.candidateService = candidateService;
 		this.jobExperienceService = jobExperienceService;
 		this.schoolService = schoolService;
 		this.foreignLanguageService = foreignLanguageService;
+		this.pictureService = pictureService;
 	}
 
 	@Override
@@ -56,6 +60,10 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		cvDto.setGithubAddress(cv.getGithubAddress());
 		cvDto.setLinkedinAddress(cv.getLinkedinAddress());
 		cvDto.setKnownTechnologies(cv.getKnownTechnologies());
+		cvDto.setCandidate(cv.getCandidate());	
+		
+		List<Picture> pictures = pictureService.getAllByUserId(cv.getCandidate().getUserId()).getData();
+		cvDto.setPictures(pictures);
 		
 		List<School> schools = schoolService.getAllByCurriculumVitaeIdSorted(cv.getCurriculumVitaeId()).getData();
 		cvDto.setSchools(schools);

@@ -1,5 +1,6 @@
 package javacamp.hrms.core.adapters;
 
+
 import javacamp.hrms.ws.client.kps.service.KPSClient;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,12 @@ public class MernisServiceAdapter implements MernisCheckService {
 		
 		boolean result = false;
 		try {
-			KPSClient kpsClient = new KPSClient();
-			return kpsClient.mernisValidation(candidate.getIdentityNumber(),
-					candidate.getFirstName(), candidate.getLastName(), candidate.getBirthDate().getYear());
+			return true;		
+			
+//			KPSClient kpsClient = new KPSClient();
+//			
+//			return kpsClient.mernisValidation(candidate.getIdentityNumber(),
+//					candidate.getFirstName(), candidate.getLastName(), candidate.getBirthDate().getYear());
 
 		} catch (Throwable e) {
 			e.printStackTrace();

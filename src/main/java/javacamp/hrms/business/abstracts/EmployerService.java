@@ -17,6 +17,8 @@ public interface EmployerService {
 	
 	Result confirmEmployer(int userId);
 	
-	DataResult<List<Employer>> getAllUnconfirmedEmployers ();
+	DataResult<List<Employer>> getAllUnconfirmedEmployers();
+	
+	DataResult<Employer> getById(int id);
 
 }

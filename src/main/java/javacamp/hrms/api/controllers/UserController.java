@@ -68,7 +68,16 @@ public class UserController {
 	public Result logInAdmin(@RequestBody Admin admin) {
 		return adminService.logIn(admin);
 	}
-
+		
+	@GetMapping("/getCandidateById")
+	public DataResult<Candidate> getCandidateById(@RequestParam int userId) {
+		return candidateService.getById(userId);
+	}
+	
+	@GetMapping("/getEmployerById")
+	public DataResult<Employer> getEmployerById(@RequestParam int userId) {
+		return employerService.getById(userId);
+	}
 
 	@GetMapping("/getAllCandidates")
 	public DataResult<List<Candidate>> getAllCandidates() {

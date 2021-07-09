@@ -13,25 +13,15 @@ import javacamp.hrms.entities.conretes.School;
 public class CurriculumVitaeDto {
 	
 	private int userId;
-//	private String schoolName;
-//	private String department;
-//	private LocalDate startDate;
-//	private LocalDate graduationDate;
-	private List<School> schools;
-//	private String workplaceName;
-//	private String position;
-//	private LocalDate startDateOfWork;
-//	private LocalDate finishDateOfWork;
 	private List<JobExperience> jobExperiences;
-//	private String languageName;
-//	private int level;
 	private List<ForeignLanguage> foreignLanguages;
+	private List<School> schools;
 	private List<Picture> pictures;
 	private String githubAddress;
     private String linkedinAddress;
     private String knownTechnologies;
     private String coverLetter;
-    private Candidate candidate;
+//    private Candidate candidate;
 	
     public CurriculumVitaeDto() {
 	
@@ -39,7 +29,9 @@ public class CurriculumVitaeDto {
 
 	public CurriculumVitaeDto(int userId, List<School> schools, List<JobExperience> jobExperiences,
 			List<ForeignLanguage> foreignLanguages, List<Picture> pictures, String githubAddress,
-			String linkedinAddress, String knownTechnologies, String coverLetter, Candidate candidate) {
+			String linkedinAddress, String knownTechnologies, String coverLetter 
+//			Candidate candidate
+			) {
 		super();
 		this.userId = userId;
 		this.schools = schools;
@@ -50,7 +42,7 @@ public class CurriculumVitaeDto {
 		this.linkedinAddress = linkedinAddress;
 		this.knownTechnologies = knownTechnologies;
 		this.coverLetter = coverLetter;
-		this.candidate = candidate;
+//		this.candidate = candidate;
 	}
 
 	public int getUserId() {
@@ -125,13 +117,13 @@ public class CurriculumVitaeDto {
 		this.coverLetter = coverLetter;
 	}
 
-	public Candidate getCandidate() {
-		return candidate;
-	}
-
-	public void setCandidate(Candidate candidate) {
-		this.candidate = candidate;
-	}
+//	public Candidate getCandidate() {
+//		return candidate;
+//	}
+//
+//	public void setCandidate(Candidate candidate) {
+//		this.candidate = candidate;
+//	}
 
 	
 

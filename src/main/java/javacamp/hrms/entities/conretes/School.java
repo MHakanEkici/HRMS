@@ -43,11 +43,11 @@ public class School {
 		
 	}
 
-	public School(int id, String name, String department, LocalDate startDate, LocalDate graduationDate,
+	public School(int id, String schoolName, String department, LocalDate startDate, LocalDate graduationDate,
 			CurriculumVitae curriculumVitae) {
 		super();
 		this.id = id;
-		this.schoolName = name;
+		this.schoolName = schoolName;
 		this.department = department;
 		this.startDate = startDate;
 		this.graduationDate = graduationDate;
@@ -62,12 +62,12 @@ public class School {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getSchoolName() {
 		return schoolName;
 	}
 
-	public void setName(String name) {
-		this.schoolName = name;
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
 
 	public String getDepartment() {

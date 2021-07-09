@@ -15,7 +15,7 @@ public class MernisServiceAdapter implements MernisCheckService {
 		
 		boolean result = false;
 		try {
-			return true;		
+			return true;	
 			
 //			KPSClient kpsClient = new KPSClient();
 //			

@@ -60,7 +60,7 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		cvDto.setGithubAddress(cv.getGithubAddress());
 		cvDto.setLinkedinAddress(cv.getLinkedinAddress());
 		cvDto.setKnownTechnologies(cv.getKnownTechnologies());
-		cvDto.setCandidate(cv.getCandidate());	
+//		cvDto.setCandidate(cv.getCandidate());	
 		
 		List<Picture> pictures = pictureService.getAllByUserId(cv.getCandidate().getUserId()).getData();
 		cvDto.setPictures(pictures);
@@ -82,6 +82,11 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		Candidate candidate = candidateService.getById(curriculumVitaeDto.getUserId()).getData();
 		if(candidate == null) {
 			return new ErrorResult("İşlem başarısız, kullanıcı bulunamadı");
+		}
+		
+		CurriculumVitae currentCv = curriculumVitaeDao.getByCandidate_UserId(candidate.getUserId());
+		if(currentCv != null) {
+			return new ErrorDataResult("Zaten ekli bilgiler bulunmakta. Bilgilerini güncellemek için güncelleme sayfasını kullan.");
 		}
 			
 		CurriculumVitae cv = new CurriculumVitae();

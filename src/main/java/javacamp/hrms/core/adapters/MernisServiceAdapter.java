@@ -1,7 +1,5 @@
 package javacamp.hrms.core.adapters;
 
-
-import javacamp.hrms.ws.client.kps.service.KPSClient;
 import org.springframework.stereotype.Service;
 
 import javacamp.hrms.core.abstracts.MernisCheckService;

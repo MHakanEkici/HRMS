@@ -3,13 +3,10 @@ package javacamp.hrms.api.controllers;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-
 import javax.imageio.ImageIO;
-
+import javacamp.hrms.core.utilities.DataResult;
+import javacamp.hrms.core.utilities.ErrorResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import javacamp.hrms.business.abstracts.PictureService;
-import javacamp.hrms.core.adapters.CloudinaryService;
 import javacamp.hrms.core.utilities.Result;
 import javacamp.hrms.entities.conretes.Picture;
-import javacamp.hrms.entities.conretes.User;
+
 
 @RestController
 @RequestMapping("/api/pictures")
@@ -40,34 +35,30 @@ public class PictureController {
 	}
 
 	@GetMapping("getAll")
-	public ResponseEntity<List<Picture>> getAll() {
-
-		List<Picture> list = this.pictureService.getAll().getData();
-		return new ResponseEntity(list, HttpStatus.OK);
+	public DataResult<List<Picture>> getAll() {
+		return this.pictureService.getAll();
 	}
 
 	@PostMapping("/upload")
-	public ResponseEntity<?> upload(@RequestParam MultipartFile multipartFile, @RequestParam int userId)
-			throws IOException {
+	public Result upload(@RequestParam MultipartFile multipartFile, @RequestParam int userId) throws IOException {
 
 		BufferedImage bufferedImage = ImageIO.read(multipartFile.getInputStream());
 		if (bufferedImage == null) {
-
-			return new ResponseEntity("Resim validasyonu başarısız.", HttpStatus.BAD_REQUEST);
+			return new ErrorResult("Resim yüklenemedi");
 		}
 
-		this.pictureService.uploadAndAdd(multipartFile, userId);
-		return new ResponseEntity("Picture saved.", HttpStatus.OK);
+		return this.pictureService.uploadAndAdd(multipartFile, userId);
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id) throws IOException {
+	public Result delete(@PathVariable("id") int id) throws IOException {
 		if (!this.pictureService.isExists(id)) {
-			return new ResponseEntity("Böyle bir resim bulunamadı", HttpStatus.NOT_FOUND);
+			//return new ResponseEntity("Resim bulunamadı", HttpStatus.NOT_FOUND);
+			return new ErrorResult("Resim bulunamadı");
 		}
 
-		this.pictureService.delete(id);
-		return new ResponseEntity("Resim başarıyla silindi.", HttpStatus.OK);
+		return this.pictureService.delete(id);
+		//return new ResponseEntity("Resim başarıyla silindi.", HttpStatus.OK);
 	}
 
 }

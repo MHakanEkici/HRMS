@@ -62,7 +62,7 @@ public class JobAdvertManager implements JobAdvertService{
 	public DataResult<List<JobAdvertDto>> getAllSorted() {
 		Sort sort = Sort.by(Sort.Direction.DESC,"createTime");
 		
-		List<JobAdvertDto> advertDtoList = new ArrayList<JobAdvertDto>();
+		List<JobAdvertDto> advertDtoList = new ArrayList<>();
 		
 		jobAdvertDao.getAllByIsActiveTrue(sort).forEach(advert->{
 			JobAdvertDto advertDto = new JobAdvertDto(); 
@@ -123,31 +123,4 @@ public class JobAdvertManager implements JobAdvertService{
 			return new ErrorResult("İşlem Başarısız");
 		}
 	}
-	
-//	@Override
-//	public void addCity() {
-//		
-//		String[] sehirler ={"Adana","Adıyaman", "Afyon", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin",
-//	            "Aydın", "Balıkesir","Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale",
-//	            "Çankırı", "Çorum","Denizli","Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum ", "Eskişehir",
-//	            "Gaziantep", "Giresun","Gümüşhane", "Hakkari", "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir",
-//	            "Kars", "Kastamonu", "Kayseri","Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya ", "Malatya",
-//	            "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya",
-//	            "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat", "Trabzon  ", "Tunceli", "Şanlıurfa", "Uşak",
-//	            "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt ", "Karaman", "Kırıkkale", "Batman", "Şırnak",
-//	            "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük ", "Kilis", "Osmaniye ", "Düzce"};
-//		
-//		List<String> sehirListesi =  Arrays.asList(sehirler);
-//		
-//		List<City> cityList = new ArrayList();
-//
-//		for(String sehir : sehirListesi) {
-//			City City = new City();
-//			City.setCityName(sehir);
-//			cityList.add(City);
-//		}
-//		
-//		cityDao.saveAll(cityList);
-//	}
-
 }

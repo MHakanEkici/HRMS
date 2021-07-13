@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javacamp.hrms.entities.conretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,11 +40,18 @@ public class PictureManager implements PictureService{
 	@Override
 	public Result uploadAndAdd(MultipartFile multipartFile, int userId) throws IOException {
 		Map result = cloudinaryService.upload(multipartFile);
+
+		User user = new User();
+		user.setUserId(userId);
+
 		Picture picture = new Picture();
 		picture.setPictureName((String) result.get("original_filename"));
 		picture.setPictureUrl((String)result.get("url"));
 		picture.setPictureId((String)result.get("public_id"));
+		picture.setUser(user);
+
 		this.pictureDao.save(picture);
+
 		return new SuccessResult("Başarıyla eklendi");
 	}
 

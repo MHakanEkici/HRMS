@@ -23,7 +23,5 @@ public interface JobAdvertService {
 	DataResult<List<JobAdvert>> getAllPassiveJobAdverts();
 	
 	Result setActiveJobAdvert(int jobAdvertId);
-	
-	//void addCity();
 
 }

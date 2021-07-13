@@ -71,10 +71,4 @@ public class JobAdvertController {
 		return jobAdvertService.setActiveJobAdvert(jobAdvertId);
 	}
 
-	//	@GetMapping("/addCities")
-	//	public Result getAllCities() {
-	//		jobAdvertService.addCity();
-	//		return new SuccessResult("İşlem başarılı");
-	//	}
-
 }

@@ -98,17 +98,17 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		
 		curriculumVitaeDao.save(cv);
 		
-		for(JobExperience jobExperience:curriculumVitaeDto.getJobExperiences()) {
+		for(JobExperience jobExperience : curriculumVitaeDto.getJobExperiences()) {
 			jobExperience.setCurriculumVitae(cv);
 		}
 		jobExperienceService.addAll(curriculumVitaeDto.getJobExperiences());
 		
-		for(School school:curriculumVitaeDto.getSchools()) {
+		for(School school : curriculumVitaeDto.getSchools()) {
 			school.setCurriculumVitae(cv);
 		}
 		schoolService.addAll(curriculumVitaeDto.getSchools());
 		
-		for(ForeignLanguage foreignLanguage:curriculumVitaeDto.getForeignLanguages()) {
+		for(ForeignLanguage foreignLanguage : curriculumVitaeDto.getForeignLanguages()) {
 			foreignLanguage.setCurriculumVitae(cv);
 		}
 		foreignLanguageService.addAll(curriculumVitaeDto.getForeignLanguages());

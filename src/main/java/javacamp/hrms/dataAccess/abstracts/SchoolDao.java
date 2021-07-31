@@ -10,5 +10,7 @@ import javacamp.hrms.entities.conretes.School;
 public interface SchoolDao extends JpaRepository <School, Integer>{
 	
 	List<School> getAllByCurriculumVitae_CurriculumVitaeId(int curriculumVitaeId, Sort sort);
+	
+	void deleteByCurriculumVitae_Candidate_UserId(int userId);
 
 }

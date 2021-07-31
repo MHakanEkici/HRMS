@@ -14,7 +14,7 @@ public interface SchoolService {
 
 	Result update(School school);
 
-	Result delete(int id);
+	Result deleteAll(int userId);
 	
 	DataResult<List<School>> getAll();
 	

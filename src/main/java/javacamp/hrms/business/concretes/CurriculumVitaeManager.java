@@ -118,11 +118,42 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 
 	@Override
 	public Result update(CurriculumVitaeDto curriculumVitaeDto) {
-		//TODO yazılacak
-//		CurriculumVitae newCurriculumVitae = curriculumVitaeDao.findById(curriculumVitaeDto.getCurriculumVitaeId()).get();
-//		newCurriculumVitae = curriculumVitaeDto;
-//		curriculumVitaeDao.save(newCurriculumVitae);
-		return new SuccessResult();
+		Candidate candidate = candidateService.getById(curriculumVitaeDto.getUserId()).getData();
+		if(candidate == null) {
+			return new ErrorResult("İşlem başarısız, kullanıcı bulunamadı");
+		}
+		
+		CurriculumVitae currentCv = curriculumVitaeDao.getByCandidate_UserId(candidate.getUserId());
+		if(currentCv == null) {
+			return new ErrorDataResult("Güncelleme için mevcut cv bilgisi bulunamadı.Bilgilerini eklemek için cv ekleme sayfasını kullan.");
+		}
+			
+		currentCv.setCoverLetter(curriculumVitaeDto.getCoverLetter());
+		currentCv.setGithubAddress(curriculumVitaeDto.getGithubAddress());
+		currentCv.setLinkedinAddress(curriculumVitaeDto.getLinkedinAddress());
+		currentCv.setKnownTechnologies(curriculumVitaeDto.getKnownTechnologies());
+		
+		curriculumVitaeDao.save(currentCv);
+		
+		for(JobExperience jobExperience : curriculumVitaeDto.getJobExperiences()) {
+			jobExperience.setCurriculumVitae(currentCv);
+		}
+		jobExperienceService.deleteAll(candidate.getUserId());
+		jobExperienceService.addAll(curriculumVitaeDto.getJobExperiences());
+		
+		for(School school : curriculumVitaeDto.getSchools()) {
+			school.setCurriculumVitae(currentCv);
+		}
+		schoolService.deleteAll(candidate.getUserId());
+		schoolService.addAll(curriculumVitaeDto.getSchools());
+		
+		for(ForeignLanguage foreignLanguage : curriculumVitaeDto.getForeignLanguages()) {
+			foreignLanguage.setCurriculumVitae(currentCv);
+		}
+		foreignLanguageService.deleteAll(candidate.getUserId());
+		foreignLanguageService.addAll(curriculumVitaeDto.getForeignLanguages());
+	
+		return new SuccessResult("İşlem Başarılı, CV eklendi");
 	}
 	
 }

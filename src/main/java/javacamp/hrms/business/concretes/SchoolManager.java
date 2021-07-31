@@ -49,8 +49,8 @@ public class SchoolManager implements SchoolService{
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.schoolDao.deleteById(id);
+	public Result deleteAll(int userId) {
+		schoolDao.deleteByCurriculumVitae_Candidate_UserId(userId);
 		return new SuccessResult();
 	}
 

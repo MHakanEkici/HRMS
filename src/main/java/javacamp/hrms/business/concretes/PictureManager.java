@@ -20,11 +20,11 @@ import javacamp.hrms.dataAccess.abstracts.PictureDao;
 import javacamp.hrms.entities.conretes.Picture;
 
 @Service
-public class PictureManager implements PictureService{
-	
-    private PictureDao pictureDao;
-    private CloudinaryService cloudinaryService;
-	
+public class PictureManager implements PictureService {
+
+	private PictureDao pictureDao;
+	private CloudinaryService cloudinaryService;
+
 	@Autowired
 	public PictureManager(PictureDao pictureDao, CloudinaryService cloudinaryService) {
 		super();
@@ -34,7 +34,7 @@ public class PictureManager implements PictureService{
 
 	@Override
 	public DataResult<List<Picture>> getAll() {
-		return new SuccessDataResult<>(this.pictureDao.findByOrderById(),"Başarıyla listelendi");
+		return new SuccessDataResult<>(this.pictureDao.findByOrderById(), "Başarıyla listelendi");
 	}
 
 	@Override
@@ -44,13 +44,21 @@ public class PictureManager implements PictureService{
 		User user = new User();
 		user.setUserId(userId);
 
-		Picture picture = new Picture();
-		picture.setPictureName((String) result.get("original_filename"));
-		picture.setPictureUrl((String)result.get("url"));
-		picture.setPictureId((String)result.get("public_id"));
-		picture.setUser(user);
+		Picture currentProfilePicture = pictureDao.getByUser_UserIdAndPictureName(userId, "profile");
 
-		this.pictureDao.save(picture);
+		if (result.get("original_filename").equals("profile") && currentProfilePicture != null) {
+			currentProfilePicture.setPictureUrl((String) result.get("url"));
+			currentProfilePicture.setPictureId((String) result.get("public_id"));
+			this.pictureDao.save(currentProfilePicture);
+		} else {
+			Picture picture = new Picture();
+			picture.setPictureName((String) result.get("original_filename"));
+			picture.setPictureUrl((String) result.get("url"));
+			picture.setPictureId((String) result.get("public_id"));
+			picture.setUser(user);
+
+			this.pictureDao.save(picture);
+		}
 
 		return new SuccessResult("Başarıyla eklendi");
 	}
@@ -64,7 +72,7 @@ public class PictureManager implements PictureService{
 
 	@Override
 	public DataResult<Optional<Picture>> getById(int id) {
-		return new SuccessDataResult<>(this.pictureDao.findById(id),"Başarıyla getirildi.");
+		return new SuccessDataResult<>(this.pictureDao.findById(id), "Başarıyla getirildi.");
 	}
 
 	@Override
@@ -76,6 +84,5 @@ public class PictureManager implements PictureService{
 	public DataResult<List<Picture>> getAllByUserId(int userId) {
 		return new SuccessDataResult<>(this.pictureDao.getAllByUser_UserId(userId));
 	}
-
 
 }

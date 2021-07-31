@@ -10,5 +10,7 @@ import javacamp.hrms.entities.conretes.JobExperience;
 public interface JobExperienceDao extends JpaRepository <JobExperience, Integer>{
 	
 	List<JobExperience> getAllByCurriculumVitae_CurriculumVitaeId(int curriculumVitaeId, Sort sort);
+	
+	void deleteByCurriculumVitae_Candidate_UserId(int userId);
 
 }

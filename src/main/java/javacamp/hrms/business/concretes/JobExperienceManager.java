@@ -49,13 +49,13 @@ public class JobExperienceManager implements JobExperienceService{
 			}
 		}
 		
-		this.jobExperienceDao.saveAll(jobExperiences);
+		jobExperienceDao.saveAll(jobExperiences);
 		return new SuccessResult();
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.jobExperienceDao.deleteById(id);
+	public Result deleteAll(int userId) {
+		jobExperienceDao.deleteByCurriculumVitae_Candidate_UserId(userId);
 		return new SuccessResult();
 	}
 
@@ -70,7 +70,7 @@ public class JobExperienceManager implements JobExperienceService{
 
 	@Override
 	public DataResult<List<JobExperience>> getAll() {
-		return new SuccessDataResult<>(this.jobExperienceDao.findAll());
+		return new SuccessDataResult<>(jobExperienceDao.findAll());
 	}
 
 }

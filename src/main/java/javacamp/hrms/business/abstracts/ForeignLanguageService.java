@@ -14,7 +14,7 @@ public interface ForeignLanguageService {
 
 	Result update(ForeignLanguage foreignLanguage);
 	
-	Result delete(int id);
+	Result deleteAll(int userId);
 
 	DataResult<List<ForeignLanguage>> getAll();
 

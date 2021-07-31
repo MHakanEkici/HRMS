@@ -13,7 +13,7 @@ public interface JobExperienceService {
 
 	Result update(JobExperience jobExperience);
 
-	Result delete(int id);
+	Result deleteAll(int userId);
 	
 	DataResult<List<JobExperience>> getAll();
 	

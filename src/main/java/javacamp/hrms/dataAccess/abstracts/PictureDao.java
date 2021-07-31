@@ -11,5 +11,7 @@ public interface PictureDao extends JpaRepository<Picture, Integer>{
 	List<Picture> findByOrderById();
 	
 	List<Picture> getAllByUser_UserId(int UserId);
+	
+	Picture getByUser_UserIdAndPictureName(int UserId, String pictureName);
 
 }

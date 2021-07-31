@@ -31,19 +31,19 @@ public class ForeignLanguageManager implements ForeignLanguageService {
 
 	@Override
 	public Result add(ForeignLanguage foreignLanguage) {
-		this.foreignLanguageDao.save(foreignLanguage);
+		foreignLanguageDao.save(foreignLanguage);
 		return new SuccessResult();
 	}
 	
 	@Override
 	public Result addAll(List<ForeignLanguage> foreignLanguages) {
-		this.foreignLanguageDao.saveAll(foreignLanguages);
+		foreignLanguageDao.saveAll(foreignLanguages);
 		return new SuccessResult();
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.foreignLanguageDao.deleteById(id);
+	public Result deleteAll(int userId) {
+		foreignLanguageDao.deleteByCurriculumVitae_Candidate_UserId(userId);
 		return new SuccessResult();
 	}
 

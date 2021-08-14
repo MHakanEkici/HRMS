@@ -39,18 +39,24 @@ public class Candidate extends User{
 	@JsonIgnore
 	private CurriculumVitae curriculumVitae;
 	
+//	@OneToMany(mappedBy = "candidate")
+//    @JsonIgnore 
+//    private List<FavouriteJobAdvert> favoriteJobAdverts;
+	
 	public Candidate() {
 		
 	}
 
 	public Candidate(String firstName, String lastName, Long identityNumber, LocalDate birthDate,
-			CurriculumVitae curriculumVitae) {
+			CurriculumVitae curriculumVitae//, List<FavouriteJobAdvert> favoriteJobAdverts
+			) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.identityNumber = identityNumber;
 		this.birthDate = birthDate;
 		this.curriculumVitae = curriculumVitae;
+//		this.favoriteJobAdverts = favoriteJobAdverts;
 	}
 
 	public String getFirstName() {
@@ -92,5 +98,14 @@ public class Candidate extends User{
 	public void setCurriculumVitae(CurriculumVitae curriculumVitae) {
 		this.curriculumVitae = curriculumVitae;
 	}
+
+//	public List<FavouriteJobAdvert> getFavoriteJobAdverts() {
+//		return favoriteJobAdverts;
+//	}
+//
+//	public void setFavoriteJobAdverts(List<FavouriteJobAdvert> favoriteJobAdverts) {
+//		this.favoriteJobAdverts = favoriteJobAdverts;
+//	}
+
 
 }
